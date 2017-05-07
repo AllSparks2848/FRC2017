@@ -127,5 +127,48 @@ public class DriveTrain extends PIDSubsystem {
     public double getHighPressure() {
     	return (highPressureSensor.getVoltage() - .5)*50;
     }
+   
+    public void setLeftRightPower(double leftPower, double rightPower) {
+    	drive1.arcadeDrive(-leftPower, -rightPower);
+    	drive2.arcadeDrive(-leftPower, -rightPower);
+	  }
+    public void resetEncoders()
+	{
+		leftEncoder.reset();
+		rightEncoder.reset();
+	}
+    public void setLeftMotor(double speed)
+	{
+    	Robot.drivetrain.leftDrive1.set(speed);
+    	Robot.drivetrain.leftDrive2.set(speed);
+    	Robot.drivetrain.leftDrive3.set(speed);
+	
+	}
+	
+	public void setRightMotor(double speed)
+	{
+		Robot.drivetrain.rightDrive1.set(-speed);
+		Robot.drivetrain.rightDrive2.set(-speed);
+		Robot.drivetrain.rightDrive3.set(-speed);
+		}
+	
+	public int getEncoderLeft()
+	{
+		return leftEncoder.get();
+	}
+	
+	public int getEncoderRight()
+	{
+		return rightEncoder.get();
+	}
+	
+	public double straightDistanceTraveled(int startLeft, int startRight)
+	{
+		int deltaLeft = getEncoderLeft() - startLeft;
+		int deltaRight = getEncoderRight() - startRight;
+		double average = deltaLeft + deltaRight / 2.0;
+		return average / 256 * Math.PI * 4;
+	}
+
 }
 
