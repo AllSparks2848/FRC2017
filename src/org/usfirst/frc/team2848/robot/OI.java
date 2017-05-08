@@ -3,6 +3,7 @@ package org.usfirst.frc.team2848.robot;
 import org.usfirst.frc.team2848.robot.commands.auton.BangBangShoot;
 import org.usfirst.frc.team2848.robot.commands.climber.Climb;
 import org.usfirst.frc.team2848.robot.commands.drive.AllOmnis;
+import org.usfirst.frc.team2848.robot.commands.drive.FollowPath;
 import org.usfirst.frc.team2848.robot.commands.drive.NoOmnis;
 import org.usfirst.frc.team2848.robot.commands.drive.ShiftHigh;
 import org.usfirst.frc.team2848.robot.commands.drive.ShiftLow;
@@ -26,7 +27,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 
 public class OI {
 	Joystick xbox1 = new Joystick(RobotMap.p_xbox1);
-//	Joystick xbox2 = new Joystick(RobotMap.p_xbox2);
+	Joystick xbox2 = new Joystick(RobotMap.p_xbox2);
 //	Joystick buttonBox = new Joystick(RobotMap.p_buttonBox);
 //	Joystick buttonBox2 = new Joystick(RobotMap.p_buttonBox2);
 	Joystick buttonBoxL = new Joystick(RobotMap.p_buttonBoxL);
@@ -44,7 +45,7 @@ public class OI {
 	Button rBump1 = new JoystickButton(xbox1, 6);
 	
 //	Controller 2
-//	Button a2 = new JoystickButton(xbox2, 1);
+	Button a2 = new JoystickButton(xbox2, 1);
 //	Button b2 = new JoystickButton(xbox2, 2);
 //	Button x2 = new JoystickButton(xbox2, 3);
 //	Button y2 = new JoystickButton(xbox2, 4);
@@ -159,7 +160,7 @@ public class OI {
 		
 		
 //		b2.whenPressed(new DriveStraight(40));
-//		a2.whenPressed(new GearTurn());
+		a2.whenPressed(new FollowPath("TestPath", false, false,1,Robot.drivetrain.gyro.getYaw()));
 ////		lBump2.whenPressed(new RedPosition3());
 //		x2.whenPressed(new DriveStraight(60));
 //		y2.whenPressed(new DriveStraight(70));
